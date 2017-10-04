@@ -13,6 +13,7 @@ import java.util.concurrent.TimeUnit
 const val INI_FILE = "layer7shield.ini"
 
 fun main(args: Array<String>) {
+	// load preferences in safe way so can make minimal configs
 	IniPreferences(Ini(File(INI_FILE))).run {
 		node("filter")?.run {
 			duration = get("duration", duration.toString()).toLong()
@@ -41,9 +42,12 @@ fun main(args: Array<String>) {
 		println("The specified access log file \"$path\" does not exist.")
 	else {
 		if (log_pid) println("Layer7Shield [${ManagementFactory.getRuntimeMXBean().name}]")
-		with(Executors.newScheduledThreadPool(2)) {
+		with(Executors.newScheduledThreadPool(2)) { // 2 threads, one for tailer one for clear
 			execute(Tailer.create(logFile, LogTailer, parse_duration, true, false, parse_buffer_size))
-			scheduleAtFixedRate(RequestFilter::clear, duration, duration, TimeUnit.MILLISECONDS)
+			scheduleAtFixedRate({
+				Firewall.clear() // first clear firewall
+				RequestFilter.clear() // then all requests
+			}, duration, duration, TimeUnit.MILLISECONDS)
 		}
 	}
 }

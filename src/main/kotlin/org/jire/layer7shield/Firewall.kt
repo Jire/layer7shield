@@ -18,4 +18,9 @@ object Firewall {
 		}
 	}
 	
+	fun clear() {
+		blockedIPs.forEach { unblock(it) }
+		blockedIPs.clear()
+	}
+	
 }

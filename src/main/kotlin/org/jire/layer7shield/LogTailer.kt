@@ -2,7 +2,7 @@ package org.jire.layer7shield
 
 import org.apache.commons.io.input.TailerListenerAdapter
 
-object LogTailer : TailerListenerAdapter() {
+internal object LogTailer : TailerListenerAdapter() {
 	override fun handle(line: String) {
 		val split = line.split(" ")
 		

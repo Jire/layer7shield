@@ -1,3 +1,5 @@
+@file:JvmName("Settings")
+
 package org.jire.layer7shield
 
 /* filter */
