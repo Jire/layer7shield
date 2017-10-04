@@ -17,6 +17,5 @@ var log_bans = true
 var log_pid = true
 
 /* firewall */
-var rule_name = "Layer7Shield"
-var add_rule_format = "netsh advfirewall firewall add rule name=\"%s\" dir=in interface=any action=block remoteip=%s/32"
-var delete_rule_format = "netsh advfirewall firewall delete rule name=\"%s\" dir=in remoteip=%s/32"
+var add_rule = "netsh advfirewall firewall add rule name=\"Layer7Shield\" dir=in interface=any action=block protocol=TCP localport=80 remoteip=%s/32"
+var delete_rule = "netsh advfirewall firewall delete rule name=\"Layer7Shield\" dir=in protocol=TCP localport=80 remoteip=%s/32"

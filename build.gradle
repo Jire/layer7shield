@@ -33,6 +33,9 @@ dependencies {
 
     compile group: 'org.ini4j', name: 'ini4j', version: '0.5.4'
     compile group: 'commons-io', name: 'commons-io', version: '2.5'
+
+    compile group: 'net.java.dev.jna', name: 'jna', version: '4.5.0'
+    compile group: 'net.java.dev.jna', name: 'jna-platform', version: '4.5.0'
 }
 
 jar {

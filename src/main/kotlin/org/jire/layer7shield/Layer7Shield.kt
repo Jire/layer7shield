@@ -30,19 +30,20 @@ fun main(args: Array<String>) {
 			log_pid = get("log_pid", log_pid.toString()).toBoolean()
 		}
 		node("firewall")?.run {
-			rule_name = get("rule_name", rule_name)
-			
-			add_rule_format = get("add_rule_format", add_rule_format)
-			delete_rule_format = get("delete_rule_format", delete_rule_format)
+			add_rule = get("add_rule", add_rule)
+			delete_rule = get("add_rule", delete_rule)
 		}
 	}
+	
+	enableDebugPrivilege()
 	
 	val logFile = File(path)
 	if (!logFile.exists())
 		println("The specified access log file \"$path\" does not exist.")
 	else {
 		if (log_pid) println("Layer7Shield [${ManagementFactory.getRuntimeMXBean().name}]")
-		with(Executors.newScheduledThreadPool(2)) { // 2 threads, one for tailer one for clear
+		with(Executors.newScheduledThreadPool(2)) {
+			// 2 threads, one for tailer one for clear
 			execute(Tailer.create(logFile, LogTailer, parse_duration, true, false, parse_buffer_size))
 			scheduleAtFixedRate({
 				Firewall.clear() // first clear firewall

@@ -21,6 +21,5 @@ Layer7Shield has a very simple configuration, found in `layer7shield.ini`:
 * **log_pid** - Whether or not to report Layer7Shield's process ID on startup
 
 **[firewall]**
-* **rule_name** - The name to use for Layer7Shield-generated firewall rules
-* **add_rule_format** - The format of the add rule command, used to block IPs
-* **delete_rule_format** - The format of the delete rule command, used to unblock IPs
+* **add_rule** - The format of the add rule command, used to block IPs
+* **delete_rule** - The format of the delete rule command, used to unblock IPs
