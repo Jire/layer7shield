@@ -4,7 +4,7 @@ package org.jire.layer7shield
 
 /* filter */
 var duration = 60000L
-var requests_per_duration = 100
+var requests_per_duration = 300
 
 /* access log */
 var path = "C:/nginx/logs/access.log"
