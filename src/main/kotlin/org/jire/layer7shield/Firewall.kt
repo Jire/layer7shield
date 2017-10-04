@@ -4,22 +4,26 @@ object Firewall {
 	
 	private val blockedIPs = HashSet<String>()
 	
-	fun block(ip: String) {
+	fun ban(ip: String) {
 		if (!blockedIPs.contains(ip)) {
 			blockedIPs.add(ip)
+			Runtime.getRuntime().exec(add_rule_format.format(rule_name, ip))
 			
-			// TODO block in firewall
+			if (log_bans) println("Banned $ip")
 		}
 	}
 	
-	fun unblock(ip: String) {
+	fun unban(ip: String) {
 		if (blockedIPs.contains(ip)) {
-			// TODO unblock in firewall
+			Runtime.getRuntime().exec(delete_rule_format.format(rule_name, ip))
+			blockedIPs.remove(ip)
+			
+			if (log_bans) println("Unbanned $ip")
 		}
 	}
 	
 	fun clear() {
-		blockedIPs.forEach { unblock(it) }
+		blockedIPs.forEach { unban(it) }
 		blockedIPs.clear()
 	}
 	

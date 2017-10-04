@@ -8,7 +8,7 @@ object RequestFilter {
 		if (log_requests) println("$ip $request")
 		
 		val requests = ipToRequests.getOrDefault(ip, 0)
-		if (requests == requests_per_duration) Firewall.block(ip)
+		if (requests == requests_per_duration) Firewall.ban(ip)
 		else if (requests < requests_per_duration) ipToRequests.put(ip, requests + 1)
 	}
 	
