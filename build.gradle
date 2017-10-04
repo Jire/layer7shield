@@ -2,14 +2,14 @@ group 'org.jire.layer7shield'
 version '1.0.0'
 
 buildscript {
-	ext.kotlin_version = '1.1.51'
-	
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-	}
+    ext.kotlin_version = '1.1.51'
+
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
 }
 
 apply plugin: 'java'
@@ -18,11 +18,12 @@ apply plugin: 'kotlin'
 sourceCompatibility = 1.6
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-	
-	compile group: 'org.ini4j', name: 'ini4j', version: '0.5.4'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    compile group: 'org.ini4j', name: 'ini4j', version: '0.5.4'
+    compile group: 'commons-io', name: 'commons-io', version: '2.5'
 }
