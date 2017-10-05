@@ -24,7 +24,6 @@ object Firewall {
 	
 	fun clear() {
 		blockedIPs.forEach { unban(it) }
-		blockedIPs.clear()
 	}
 	
 }
